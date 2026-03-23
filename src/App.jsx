@@ -3,7 +3,7 @@ import { Phone, MapPin, Star, CheckCircle2, Droplets, Building2, ShieldCheck, Sp
 
 const phoneDisplay = "(949) 704-6019";
 const phoneHref = "tel:+19497046019";
-const logoSrc = "/images/logo.svg";
+const logoSrc = "/images/logo.png";
 
 const services = [
   {
