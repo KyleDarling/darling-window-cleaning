@@ -840,7 +840,7 @@ function ContactPage() {
   const mailto = useMemo(() => {
     const subject = encodeURIComponent("Quote Request - Darling Window Cleaning");
     const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nAddress: ${form.address}\n\nProject Details:\n${form.details}`);
-    return `mailto:hello@darlingwindowcleaning.com?subject=${subject}&body=${body}`;
+    return `mailto:kyledarling@darlingwindowcleaning.com?subject=${subject}&body=${body}`;
   }, [form]);
 
   return (
