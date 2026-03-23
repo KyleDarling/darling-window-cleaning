@@ -853,7 +853,7 @@ function ContactPage() {
           <div className="mt-8 space-y-4 text-sm text-neutral-700">
             <div className="flex items-center gap-3"><Phone className="h-4 w-4" /> {phoneDisplay}</div>
             <div className="flex items-center gap-3"><MapPin className="h-4 w-4" /> Huntington Beach, California</div>
-            <div className="flex items-center gap-3"><Mail className="h-4 w-4" /> hello@darlingwindowcleaning.com</div>
+            <div className="flex items-center gap-3"><Mail className="h-4 w-4" /> kyledarling@darlingwindowcleaning.com</div>
             <div className="flex items-center gap-3"><MessageSquare className="h-4 w-4" /> Fast quotes and scheduling support</div>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
