@@ -849,7 +849,7 @@ function ContactPage() {
         <div>
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500">Contact</div>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Request your quote.</h1>
-          <p className="mt-5 text-base leading-7 text-neutral-600">Tell us a little about your home or property and what you need cleaned. This page is ready for a form connection later.</p>
+          <p className="mt-5 text-base leading-7 text-neutral-600">Tell us a little about your home or property and what you need cleaned. Fill out the form below and we’ll get back to you with a fast quote..</p>
           <div className="mt-8 space-y-4 text-sm text-neutral-700">
             <div className="flex items-center gap-3"><Phone className="h-4 w-4" /> {phoneDisplay}</div>
             <div className="flex items-center gap-3"><MapPin className="h-4 w-4" /> Huntington Beach, California</div>
