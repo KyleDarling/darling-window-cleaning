@@ -888,7 +888,18 @@ export default function App() {
   const [selectedService, setSelectedService] = useState(services[0]);
 
   useEffect(() => {
-  const path = window.location.pathname;
+  const path = window.location.pathname.toLowerCase();
+
+  const slugMap = {
+    "huntington-beach": "Huntington Beach",
+    "newport-beach": "Newport Beach",
+    "costa-mesa": "Costa Mesa",
+    "irvine": "Irvine",
+    "laguna-beach": "Laguna Beach",
+    "mission-viejo": "Mission Viejo",
+    "san-clemente": "San Clemente",
+    "orange-county": "Orange County",
+  };
 
   const matchCity = (name) => {
     const city = cityPages.find(c => c.name === name);
@@ -898,25 +909,22 @@ export default function App() {
     }
   };
 
-  if (path.includes("huntington-beach")) {
-    matchCity("Huntington Beach");
-  } else if (path.includes("newport-beach")) {
-    matchCity("Newport Beach");
-  } else if (path.includes("costa-mesa")) {
-    matchCity("Costa Mesa");
-  } else if (path.includes("irvine")) {
-    matchCity("Irvine");
-  } else if (path.includes("laguna-beach")) {
-    matchCity("Laguna Beach");
-  } else if (path.includes("mission-viejo")) {
-    matchCity("Mission Viejo");
-  } else if (path.includes("san-clemente")) {
-    matchCity("San Clemente");
-  } else if (path.includes("orange-county")) {
-    matchCity("Orange County");
-  } else {
-    setCurrentPage("home");
+  // 🔥 HANDLE DASH STYLE URL
+  const matchedSlug = Object.keys(slugMap).find(slug =>
+    path.includes(slug)
+  );
+
+  if (matchedSlug) {
+    matchCity(slugMap[matchedSlug]);
+    return;
   }
+
+  if (path === "/services") setCurrentPage("services");
+  else if (path === "/commercial") setCurrentPage("commercial");
+  else if (path === "/gallery") setCurrentPage("gallery");
+  else if (path === "/contact") setCurrentPage("contact");
+  else setCurrentPage("home");
+
 }, []);
   const page = {
     home: <HomePage setCurrentPage={setCurrentPage} setService={setSelectedService} setCity={setSelectedCity} />,
