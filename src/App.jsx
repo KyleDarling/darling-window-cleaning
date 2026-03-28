@@ -888,35 +888,63 @@ export default function App() {
   const [selectedService, setSelectedService] = useState(services[0]);
 
   useEffect(() => {
-  const path = window.location.pathname;
+  const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
 
-  const matchCity = (name) => {
-    const city = cityPages.find(c => c.name === name);
+  setCurrentPath(path);
+
+  const matchCity = (name, pageType = "city") => {
+    const city = cityPages.find((c) => c.name === name);
     if (city) {
       setSelectedCity(city);
-      setCurrentPage("city");
+      setCurrentPage(pageType);
     }
   };
 
-  if (path.includes("huntington-beach")) {
-    matchCity("Huntington Beach");
-  } else if (path.includes("newport-beach")) {
-    matchCity("Newport Beach");
-  } else if (path.includes("costa-mesa")) {
-    matchCity("Costa Mesa");
-  } else if (path.includes("irvine")) {
-    matchCity("Irvine");
-  } else if (path.includes("laguna-beach")) {
-    matchCity("Laguna Beach");
-  } else if (path.includes("mission-viejo")) {
-    matchCity("Mission Viejo");
-  } else if (path.includes("san-clemente")) {
-    matchCity("San Clemente");
-  } else if (path.includes("orange-county")) {
-    matchCity("Orange County");
-  } else {
-    setCurrentPage("home");
+  const servicePrefixes = [
+    "window-cleaning",
+    "pressure-washing",
+    "gutter-cleaning",
+    "solar-panel-cleaning",
+    "commercial-window-cleaning",
+    "storefront-window-cleaning",
+    "window-cleaning-near-me",
+    "same-day-window-cleaning",
+    "affordable-window-cleaning",
+    "best-window-cleaning-orange-county",
+    "residential-window-cleaning",
+    "interior-window-cleaning",
+  ];
+
+  const isServiceCityPage = servicePrefixes.some((prefix) =>
+    path.startsWith(prefix + "/")
+  );
+
+  if (isServiceCityPage) {
+    const parts = path.split("/");
+    const citySlug = parts[1];
+
+    const cityName = citySlug
+      ?.split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+    matchCity(cityName, "dynamicServiceCity");
+    return;
   }
+
+  if (path.includes("huntington-beach")) matchCity("Huntington Beach");
+  else if (path.includes("newport-beach")) matchCity("Newport Beach");
+  else if (path.includes("costa-mesa")) matchCity("Costa Mesa");
+  else if (path.includes("irvine")) matchCity("Irvine");
+  else if (path.includes("laguna-beach")) matchCity("Laguna Beach");
+  else if (path.includes("mission-viejo")) matchCity("Mission Viejo");
+  else if (path.includes("san-clemente")) matchCity("San Clemente");
+  else if (path.includes("orange-county")) matchCity("Orange County");
+  else if (path === "services") setCurrentPage("services");
+  else if (path === "commercial") setCurrentPage("commercial");
+  else if (path === "gallery") setCurrentPage("gallery");
+  else if (path === "contact") setCurrentPage("contact");
+  else setCurrentPage("home");
 }, []);
   const page = {
     home: <HomePage setCurrentPage={setCurrentPage} setService={setSelectedService} setCity={setSelectedCity} />,
