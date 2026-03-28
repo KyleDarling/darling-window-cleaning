@@ -887,6 +887,37 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState(cityPages[0]);
   const [selectedService, setSelectedService] = useState(services[0]);
 
+  useEffect(() => {
+  const path = window.location.pathname;
+
+  const matchCity = (name) => {
+    const city = cityPages.find(c => c.name === name);
+    if (city) {
+      setSelectedCity(city);
+      setCurrentPage("city");
+    }
+  };
+
+  if (path.includes("huntington-beach")) {
+    matchCity("Huntington Beach");
+  } else if (path.includes("newport-beach")) {
+    matchCity("Newport Beach");
+  } else if (path.includes("costa-mesa")) {
+    matchCity("Costa Mesa");
+  } else if (path.includes("irvine")) {
+    matchCity("Irvine");
+  } else if (path.includes("laguna-beach")) {
+    matchCity("Laguna Beach");
+  } else if (path.includes("mission-viejo")) {
+    matchCity("Mission Viejo");
+  } else if (path.includes("san-clemente")) {
+    matchCity("San Clemente");
+  } else if (path.includes("orange-county")) {
+    matchCity("Orange County");
+  } else {
+    setCurrentPage("home");
+  }
+}, []);
   const page = {
     home: <HomePage setCurrentPage={setCurrentPage} setService={setSelectedService} setCity={setSelectedCity} />,
     landing: <LandingPage setCurrentPage={setCurrentPage} />,
