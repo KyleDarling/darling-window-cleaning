@@ -1,6 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/(.*)", "destination": "/" }
+  "routes": [
+    { "src": "/sitemap.xml", "headers": { "Content-Type": "application/xml" }, "dest": "/sitemap.xml" },
+    { "src": "/(.*)", "dest": "/" }
   ]
 }
